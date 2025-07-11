@@ -16,7 +16,7 @@ Note:
 Now in 2025.Jul.10, Debian 12.11 has an issue that cannot load the watchdog.
 Due to it, ECX `userw` cannot utilize `softdog` untill the *forthcoming update* of Debian.
 
-https://www.debian.org/News/2025/20250517
+<https://www.debian.org/News/2025/20250517>
 > Known Issues
 >
 > Linux 6.1.137-1, included with Debian 12.11, is unable to load the watchdog and `w83977f_wdt` modules on the amd64 architecture. This is a regression.
@@ -52,23 +52,48 @@ Thus the installation and configuration steps remove `userw` resource from the c
     - `eth0` to have `10.0.0.11/24` for example of public network.
     - `eth1` to have `192.168.0.11/24` for example of private network.
 
-3. ECX installation and configuration
+3. DRBD installation and configuration
+
+    Follow <https://github.com/EXPRESSCLUSTER/DRBD/blob/master/doc/2-node-cluster-ubuntu23.04.md>.
+    This article explains how to enable DRBD on Ubuntu 23, and the same instructions apply to Debian 11.
+
+4. MariaDB installation & configuration
+
+    Install MariaDB
+
+    ```bash
+    sudo apt update
+    sudo apt install -y mariadb-server mariadb-client
+    ```
+
+    Follow <https://github.com/EXPRESSCLUSTER/MariaDB/blob/master/MariaDB%20with%20Linux.md>.
+    This article explains how to enable MariaDB on RHEL 9.0, and the same instructions apply to Debian 11.
+
+5. ECX installation and configuration
 
     1. Install ECX
 
        ```bash
-       $ sudo apt install ./expresscls-5.3.0-1.amd64.deb
-       $ sudo clplcnsc -i *
-       $ sudo reboot
+       sudo apt install ./expresscls-5.3.0-1.amd64.deb
+       sudo clplcnsc -i *
+       sudo reboot
        ```
 
-    2. Open *EXPRESSCLUSTER WebUI*, make the configuration of the cluster.
+    2. Open *EXPRESSCLUSTER WebUI* and make the configuration of the cluster.
 
-    3. **Remove *userw* monitor resource from the configuration,** then apply the configuration.
+        Overall configuration would be as following.
 
-4. MariaDB installation and configuration
+        - failover1
+          - fip1
+          - exec-DRBD
+          - exec-MariaDB
+        - fipw
+        - genw-DRBD
+        - genw-MariaDB
+        - userw
 
-    ```bash
-    $ sudo apt update
-    $ sudo apt install -y mariadb-server mariadb-client
-    ```
+        **Remove *userw* monitor from the configuration.**
+
+        ![img](removing_userw.png)
+
+        Apply the configuration.
