@@ -11,7 +11,7 @@ Configuration:
 - 2 nodes
 - Data mirroring
 
-Note:
+----
 
 Now in **2025.Jul.10**, Debian 12.11 has an issue that cannot load the watchdog.
 Due to it, ECX `userw` cannot utilize `softdog` untill the *forthcoming update* of Debian.
@@ -25,11 +25,12 @@ Due to it, ECX `userw` cannot utilize `softdog` untill the *forthcoming update* 
 >
 > Users who rely on the watchdog functionality should disable their watchdog or avoid upgrading to this kernel version until a fix is available.
 
-One of the possible options would be that omitting `userw` from the configuration and adding `userw` once the problem on Debian will be fixed.
+A possible measure for now is omitting `userw` from the cluster configuration and rebert it once the problem on Debian will be fixed and the installation and configuration steps are as followings.
+The disadvantage of omitting `userw` is that the OS will not automatically reset if a long delay occurs.
+In a real system, operations would likely include manual operations such as "delay detection > **manual stop** > automatic failover".
+As for an automation measure, the utilization of *forced stop* resource is also described.
 
-The disadvantage of omitting `userw` is that there is no automatic OS reset when userland gets long delay. In practice, the system operation will include manual operation such like "Detect delay > **Manual stop** > Automatic failover."
-
-Thus the installation and configuration steps remove `userw` resource from the cluster for now intentionally.
+----
 
 ## Installation and configuration steps
 
