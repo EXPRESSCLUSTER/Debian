@@ -42,15 +42,13 @@ Thus the installation and configuration steps remove `userw` resource from the c
 
 2. Debian installation and configuration
 
-    Install Debian to `/dev/sda`
+    Install Debian on `/dev/sda`.
 
-    Configure disk:
-    - `/dev/sdb1` for the Cluster Partition of the Mirror Disk resource which should be **1 GB**.
-    - `/dev/sdb2` for the Data Partition of the Mirror Disk resource.
+    Configure disk `/dev/sdb1` to be replicated by DRBD.
 
     Configure network:
-    - `eth0` to have `10.0.0.11/24` for example of public network.
-    - `eth1` to have `192.168.0.11/24` for example of private network.
+    - `eth0` to have `10.0.0.11/24` for public network example.
+    - `eth1` to have `192.168.0.11/24` for private network example.
 
 3. ECX installation and configuraiton
 
