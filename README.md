@@ -102,3 +102,10 @@ As for an automation measure, the utilization of *forced stop* resource is also 
     - genw-DRBD
     - diskw-DRBD
     - mysqlw-MariaDB
+
+## DRBD trouble shooting
+
+Technical support for DRBD is often requested, even though it is a part of Linux.
+If your customer wants to have tech support for DRBD, they should first purchase tech Support for Linux from a Linux distributor, then buy the Tech Support for DRBD by Linbit.
+
+[DRBD Troubleshooting](DRBD-TroubleShoot.md) explains general methods for TS.
